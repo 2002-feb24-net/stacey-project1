@@ -19,6 +19,6 @@ steps:
   displayName: change directory
 
 - script: dotnet build
-  workingDirectory: .
+  workingDirectory: CornNuggets
   displayName: build the code
 

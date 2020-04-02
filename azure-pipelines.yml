@@ -18,7 +18,7 @@ steps:
     cd CornNuggets
   displayName: change directory
 
-- script: |
-    dotnet build
+- script: dotnet build
+  workingDirectory: .
   displayName: build the code
 

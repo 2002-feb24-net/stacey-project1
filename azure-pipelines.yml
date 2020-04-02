@@ -13,8 +13,7 @@ pool:
 
 #steps in the job: kinds of steps include "step" tab on the the next line and give a display name
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+
 
 #pipe lets you continue on a new line without causing an error
 #- script: |

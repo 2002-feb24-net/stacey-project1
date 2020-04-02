@@ -21,5 +21,5 @@ steps:
 #    ls
 #  displayName: 'Show directory contents'
 - script: dotnet build
-  workingDirectory: CornNuggets
+  workingDirectory: /c/Revature/stacey-project1/CornNuggets
   displayName: 'Build the project'

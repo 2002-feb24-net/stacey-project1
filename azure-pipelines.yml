@@ -20,7 +20,7 @@ steps:
 #    echo Add other tasks to build, test, and deploy your project.
 #    ls
 #  displayName: 'Show directory contents'
-- script: |
+- script: 
     dotnet build
   workingDirectory: CornNuggets
   displayName: 'Build the project'

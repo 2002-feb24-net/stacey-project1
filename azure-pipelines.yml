@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# set of jobs that will run when triggered
+# all branches get built from if no triggers present
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+# a pool is a set of machines for running this job
+pool:
+  vmImage: 'ubuntu-latest'
+
+#steps in the job: kinds of steps include "step" tab on the the next line and give a display name
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+#pipe lets you continue on a new line without causing an error
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    ls
+  displayName: 'Show directory contents'

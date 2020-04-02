@@ -17,7 +17,11 @@ steps:
   displayName: 'Run a one-line script'
 
 #pipe lets you continue on a new line without causing an error
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    ls
+#  displayName: 'Show directory contents'
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    ls
-  displayName: 'Show directory contents'
+    dotnet build
+  workingDirectory: 
+  displayName: 'Build the project'

@@ -9,11 +9,11 @@ trigger:
 - master
 # a pool is a set of machines for running this job
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 #steps in the job: kinds of steps include "step" tab on the the next line and give a display name
 steps:
 
 - script: dotnet build
   workingDirectory: /c/Revature/stacey-project1/CornNuggets
-  displayName: 'Build the project'
+  displayName: Build the project

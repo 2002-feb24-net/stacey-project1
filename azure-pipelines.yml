@@ -15,8 +15,8 @@ pool:
 steps:
 #pipe | lets you continue on a new line without causing an error
 - script: |
-    cd /c/Revature/stacey-project1/CornNuggets
+    cd CornNuggets
   displayName: change directory
 
 - script: dotnet build
-  displayName: 'Build the project'
+  displayName: Build the project

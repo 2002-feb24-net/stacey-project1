@@ -75,4 +75,5 @@ data access tests (if present) should not impact the app's actual database [new]
 
 /*events*/
 -added Azure pipeline to project; ran build command successfully APR/2/2020
--published to Azure app services; CornNuggetsWeppApp.azurewebsites.net 4/2/2020
+-published to Azure app services; CornNuggetsWeppApp.azurewebsites.net APR/2/2020
+-added repository methods, seed data, controllers (customers, products, orders) APR/3/2020

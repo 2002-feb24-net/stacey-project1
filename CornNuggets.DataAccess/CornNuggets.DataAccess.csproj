@@ -14,8 +14,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-
 </Project>

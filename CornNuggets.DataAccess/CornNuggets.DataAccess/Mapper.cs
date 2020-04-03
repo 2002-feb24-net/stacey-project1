@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CornNuggets.DataAccess.Repositories
+namespace CornNuggets.DataAccess.CornNuggets.DataAccess
 {
     class Mapper
     {

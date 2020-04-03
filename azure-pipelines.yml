@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# set of jobs that will run when triggered
+# all branches get built from if no triggers present
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+# a pool is a set of machines for running this job
+pool:
+  vmImage: 'ubuntu-latest'
+
+#steps in the job: kinds of steps include "step" tab on the the next line and give a display name
+steps:
+#pipe | lets you continue on a new line without causing an error
+- script: |
+    cd CornNuggets
+  displayName: change directory
+
+- script: dotnet build CornNuggets.sln
+  workingDirectory: CornNuggets
+  displayName: build the code
+

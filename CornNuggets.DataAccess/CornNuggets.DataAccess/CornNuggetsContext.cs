@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using CornNuggets.DataAccess;
 using CornNuggets.DataAccess.Models;
 
 namespace CornNuggets.DataAccess

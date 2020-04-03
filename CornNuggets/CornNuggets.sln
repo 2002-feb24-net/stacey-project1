@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CornNuggets.WebUI", "CornNuggets.WebUI.csproj", "{A8C94A1E-68C5-4B18-BCBA-97A6EC3AC6A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B7F7F69-8182-485C-AE82-2759A6064B00} = {7B7F7F69-8182-485C-AE82-2759A6064B00}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CornNuggets.Domain", "..\CornNuggets.Domain\CornNuggets.Domain.csproj", "{7B7F7F69-8182-485C-AE82-2759A6064B00}"
 EndProject

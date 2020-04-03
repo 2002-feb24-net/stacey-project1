@@ -25,3 +25,15 @@ steps:
 - script: dotnet publish CornNuggets.sln
   workingDirectory: CornNuggets
   displayName: publish the solution
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(98c51498-0ff2-4666-9f7b-bc3b2169ebe8)'
+    appType: 'webApp'
+    WebAppName: 'CornNuggetsWebApp'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'

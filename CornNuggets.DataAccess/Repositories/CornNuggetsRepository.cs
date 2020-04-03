@@ -2,13 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CornNuggets.DataAccess.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace CornNuggets.DataAccess.Repositories
 {
-    class CornNuggetsRepository
+    class CornNuggetsRepository : ICornNuggetsRepository
     {
+
+        private readonly CornNuggetsContext _context;
+        public CornNuggetsRepository(CornNuggetsContext context)
+        {
+            _context = context;
+        }
+        
+        
+        public Customers AddCustomer(Customers newCustomer)
+        {
+            _context.Customers.Add(newCustomer);
+            _context.SaveChanges();
+            return newCustomer;
+        }
+        
+        
+        public IEnumerable<Customers> GetAllCustomers()
+        {
+            return _context.Customers;
+        }
+ 
+        
+        
+        
         public static void Run()
         {
             using (var context = new CornNuggetsContext())

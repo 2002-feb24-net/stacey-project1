@@ -20,5 +20,7 @@ steps:
 
 - script: dotnet build CornNuggets.sln
   workingDirectory: CornNuggets
-  displayName: build the code
+  displayName: build the solution
 
+- script: dotnet publish CornNuggets.sln
+  displayName: publish the solution

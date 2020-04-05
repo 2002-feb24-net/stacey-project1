@@ -2,7 +2,93 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome To Corn Nuggets!</h1>
-    <p>Click here to begin your <a asp-area="" asp-controller="Orders" asp-action="Create">Order Now!</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome To Corn Nuggets!</h1>
+        <table style="width:100%">
+
+            <tr>
+                <td>
+                    <a asp-area="" asp-controller="Orders" asp-action="Create"><img src="~/neworder.png" alt="New Order Icon"></a>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="Customers" asp-action="Create"><img src="~/addcustomer.png" alt="Add Customer Icon"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Place an order for a customer at their preferred store.
+                </td>
+                <td>
+                </td>
+                <td>
+                    Add a new customer.
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <a asp-area="" asp-controller="Customers" asp-action="Search"><img src="~/searchcustomer.png" alt="Search Customer By Name Icon"></a>
+                </td>
+                <td>
+
+                <td>
+                    <a asp-area="" asp-controller="Orders" asp-action="Details"><img src="~/orderdetails.png" alt="Order details icon"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Search for a customer by name.
+                </td>
+
+                <td></td>
+
+                <td>
+                    Display details of an order.
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <a asp-area="" asp-controller="NuggetStores" asp-action="Orders"><img src="~/storeorders.png" alt="Store orders icon"></a>
+                </td>
+                <td>
+
+                <td>
+                    <a asp-area="" asp-controller="Customers" asp-action="OrderLog"><img src="~/orderhistory.png" alt="Order history icon"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                Display all order history of a store.</td>
+                <td>
+                </td>
+                <td>
+                    Display all order history of a customer.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="Orders" asp-action="Index"><img src="~/cornNuggets.png" alt="Corn Nuggets Menu Icon"></a>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    See what's on the menu.
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <br>
+        <p></p>
+    </div>
+    

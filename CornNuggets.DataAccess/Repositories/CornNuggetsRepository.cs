@@ -24,8 +24,86 @@ namespace CornNuggets.DataAccess.Repositories
             _context.SaveChanges();
             return newCustomer;
         }
-        
-        
+
+        public NuggetStores AddNuggetStore(NuggetStores newStore)
+        {
+            _context.NuggetStores.Add(newStore);
+            _context.SaveChanges();
+            return newStore;
+        }
+
+        public IEnumerable<Customers> SearchCustomers(string fname, string lname)
+        {
+            using (var context = new CornNuggetsContext())
+            {
+
+                var cust = context.Customers
+                    .FromSqlRaw("EXECUTE dbo.spCustomer_GetByFullName {0}, {1}", fname, lname)
+                    .ToList();
+                return cust;
+                
+            }
+        }
+
+        public IEnumerable<NuggetStores> GetStoreOrders(int storeid)
+        {
+            using (var context = new CornNuggetsContext())
+            {
+
+                var stores = context.NuggetStores
+                    .FromSqlRaw("EXECUTE dbo.spCustomer_GetAllByStore {0}", storeid)
+                    .ToList();
+                return stores;
+                
+            }
+        }
+
+        public IEnumerable<Orders> NewOrder(string fname, string lname, int prodid, int prodqty)
+        {
+            using (var context = new CornNuggetsContext())
+            {
+
+                var orders = context.Orders
+                    .FromSqlRaw("EXECUTE dbo.spOrders_PlaceToStoreForCustomer {0}, {1}, {2}, {3}", fname, lname, prodid, prodqty)
+                    .ToList();
+                
+                return orders;
+            }
+        }
+
+        public IEnumerable<Orders> AddToOrder(int orderid, int prodid, int prodqty)
+        {
+            using (var context = new CornNuggetsContext())
+            {
+
+                var orders = context.Orders
+                    .FromSqlRaw("EXECUTE dbo.spOrders_PlaceToStoreForCustomer {0}, {1}, {2}", orderid, prodid, prodqty)
+                    .ToList();
+
+                return orders;
+            }
+        }
+
+        public IEnumerable<Orders> GetCustomerOrders(int customerid)
+        {
+            using (var context = new CornNuggetsContext())
+            {
+                var orders = context.Orders
+                    .FromSqlInterpolated($"EXECUTE dbo.spCustomers_DisplayOdersByID({customerid})")
+                    .ToList();
+                return orders;
+            }
+        }
+        public IEnumerable<OrderLog> GetOrdersDetails(int orderid)
+        {
+            using (var context = new CornNuggetsContext())
+            {
+                var orderlog = context.OrderLog
+                    .FromSqlInterpolated($"EXECUTE dbo.spOrders_GetDetails, {orderid}")
+                    .ToList();
+                return orderlog;
+            }
+        }
         public IEnumerable<Customers> GetAllCustomers()
         {
             return _context.Customers;
@@ -57,10 +135,10 @@ namespace CornNuggets.DataAccess.Repositories
             using (var context = new CornNuggetsContext())
             {
                 #region FromSqlRawStoredProcedureParameter
-                var fname = "john";
-                var lname = "doe";
+                var fname = context.Customers.FromSqlRaw("Select FirstName from Customers where FirstName = firstName");
+                var lname = context.Customers.FromSqlRaw("Select LastName from Customers where LastName = lastName");
 
-                var blogs = context.Customers
+                var cust = context.Customers
                     .FromSqlRaw("EXECUTE dbo.spCustomer_GetByFullName {0}, {1}", fname, lname)
                     .ToList();
                 #endregion

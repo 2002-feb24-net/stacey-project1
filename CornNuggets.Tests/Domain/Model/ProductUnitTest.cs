@@ -6,5 +6,9 @@ namespace CornNuggets.Tests.Domain.Model
 {
     class ProductUnitTest
     {
+        //productId is valid for order
+
+        //product quantity is enough for order (check inventory)
+
     }
 }

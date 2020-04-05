@@ -25,7 +25,20 @@ namespace CornNuggets.WebUI.Controllers
             var cornNuggetsContext = _context.Orders.Include(o => o.Customer).Include(o => o.Store);
             return View(await cornNuggetsContext.ToListAsync());
         }
+        public async Task<IActionResult> Form(int OrderId,int ProductQty)
+        {
+            var orders = await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Store)
+                .Include(o => o.OrderLog)
+                .FirstOrDefaultAsync(o => o.OrderId == OrderId);
+            if (orders == null)
+            {
+                return NotFound();
+            }
 
+            return View(orders);
+        }
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -49,8 +62,8 @@ namespace CornNuggets.WebUI.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "PreferredStore");
-            ViewData["StoreId"] = new SelectList(_context.NuggetStores, "StoreId", "StoreName");
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "FirstName", "FirstName");
+            ViewData["StoreId"] = new SelectList(_context.NuggetStores, "StoreName", "StoreName");
             return View();
         }
 
@@ -67,7 +80,7 @@ namespace CornNuggets.WebUI.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "PreferredStore", orders.CustomerId);
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "FirstName", orders.CustomerId);
             ViewData["StoreId"] = new SelectList(_context.NuggetStores, "StoreId", "StoreName", orders.StoreId);
             return View(orders);
         }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CornNuggets.DataAccess;
 using CornNuggets.DataAccess.Models;
 
+
 namespace CornNuggets.WebUI.Controllers
 {
     public class CustomersController : Controller
@@ -26,6 +27,7 @@ namespace CornNuggets.WebUI.Controllers
         }
 
         // GET: Customers/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

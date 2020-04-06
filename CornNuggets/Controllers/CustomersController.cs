@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CornNuggets.DataAccess;
 using CornNuggets.DataAccess.Models;
-
+using CornNuggets.DataAccess.Repositories;
 
 namespace CornNuggets.WebUI.Controllers
 {
     public class CustomersController : Controller
     {
         private readonly CornNuggetsContext _context;
-
+        CornNuggetsRepository repository; 
         public CustomersController(CornNuggetsContext context)
         {
             _context = context;
+            repository = new CornNuggetsRepository(_context);
         }
 
         // GET: Customers
@@ -41,13 +42,15 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
-
+            var repo = new CornNuggetsRepository();
             return View(customers);
         }
 
         // GET: Customers/Create
+        [HttpGet]
         public IActionResult Create()
         {
+
             return View();
         }
 
@@ -56,15 +59,16 @@ namespace CornNuggets.WebUI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,PreferredStore")] Customers customers)
+        public async Task<IActionResult> Create( [Bind("CustomerId,FirstName,LastName,PreferredStore")] Customers customers, CornNuggetsRepository repository)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customers);
+                var stores = repository.GetAllPreferredStores();
+                repository.AddCustomer(customers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(customers);
+            return View();
         }
 
         // GET: Customers/Edit/5

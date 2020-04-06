@@ -24,7 +24,16 @@ namespace CornNuggets.WebUI.Controllers
         {
             return View(await _context.Products.ToListAsync());
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Form()
+        {
+            return View(await _context.Products.ToListAsync());
+        }
+        [HttpPost]
+        public IActionResult Form([Bind("ProductId,ProductName,ProductPrice,Inventory")] Products products)
+        {
+            return Redirect("/");
+        }
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {

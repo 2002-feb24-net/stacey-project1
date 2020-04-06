@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CornNuggets.DataAccess;
 using CornNuggets.DataAccess.Models;
+using CornNuggets.DataAccess.Repositories;
 
 namespace CornNuggets.WebUI.Controllers
 {
@@ -28,7 +29,7 @@ namespace CornNuggets.WebUI.Controllers
         }
 
         // GET: NuggetStores/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -41,8 +42,9 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
-
-            return View(nuggetStores);
+            var repo = new CornNuggetsRepository();
+            var repoList = repo.GetStoreOrders(id);
+            return View(repoList);
         }
 
         // GET: NuggetStores/Create

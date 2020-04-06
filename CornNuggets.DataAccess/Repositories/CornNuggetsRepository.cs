@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CornNuggets.DataAccess.Repositories
 {
-    class CornNuggetsRepository : ICornNuggetsRepository
+    public class CornNuggetsRepository : ICornNuggetsRepository
     {
 
         private readonly CornNuggetsContext _context;
@@ -16,11 +16,22 @@ namespace CornNuggets.DataAccess.Repositories
         {
             _context = context;
         }
-        
-        
+
+        public CornNuggetsRepository()
+        {
+        }
+
         public Customers AddCustomer(Customers newCustomer)
         {
-            _context.Customers.Add(newCustomer);
+            using (var context = new CornNuggetsContext())
+            {
+             
+                var cust = context.Customers
+                    .FromSqlRaw("EXECUTE dbo.spCustomer_GetByFullName {0}, {1}", newCustomer.FirstName , newCustomer.LastName)
+                    .ToList();
+                
+            }
+            //_context.Customers.Add(cust);
             _context.SaveChanges();
             return newCustomer;
         }
@@ -108,10 +119,19 @@ namespace CornNuggets.DataAccess.Repositories
         {
             return _context.Customers;
         }
- 
-        
-        
-        
+        public List<string> GetAllPreferredStores()
+        {
+            List<string> stores = new List<string>();
+            foreach(var item in _context.Customers)
+            {
+                stores.Add(item.PreferredStore);
+            }
+            return stores;
+        }
+
+
+
+
         public static void Run()
         {
             using (var context = new CornNuggetsContext())

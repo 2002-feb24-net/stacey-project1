@@ -8,6 +8,8 @@ namespace CornNuggets.DataAccess
 {
     public partial class CornNuggetsContext : DbContext
     {
+        public readonly object forms;
+
         public CornNuggetsContext()
         {
         }

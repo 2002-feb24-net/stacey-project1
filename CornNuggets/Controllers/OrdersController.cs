@@ -25,18 +25,25 @@ namespace CornNuggets.WebUI.Controllers
             var cornNuggetsContext = _context.Orders.Include(o => o.Customer).Include(o => o.Store);
             return View(await cornNuggetsContext.ToListAsync());
         }
-        public async Task<IActionResult> Form(int OrderId,int ProductQty)
+
+        [HttpGet]
+        public async Task<IActionResult> Form(int? orderId)
         {
-            var orders = await _context.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.Store)
-                .Include(o => o.OrderLog)
-                .FirstOrDefaultAsync(o => o.OrderId == OrderId);
-            if (orders == null)
+            if (orderId==null)
             {
                 return NotFound();
             }
+            var orders = await _context.Orders
+                .Include(s => s.StoreId)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.CustomerId == orderId);
 
+            if (orders ==null)
+            {
+                return NotFound();
+            }    
+            //var byId = new FormViewModel();
+            //var result = byId.Repo.GetOrdersDetails(orderId);
             return View(orders);
         }
         // GET: Orders/Details/5

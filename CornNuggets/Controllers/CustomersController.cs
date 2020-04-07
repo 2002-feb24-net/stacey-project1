@@ -14,7 +14,7 @@ namespace CornNuggets.WebUI.Controllers
     public class CustomersController : Controller
     {
         private readonly CornNuggetsContext _context;
-        CornNuggetsRepository repository; 
+        CornNuggetsRepository repository = new CornNuggetsRepository(); 
         public CustomersController(CornNuggetsContext context)
         {
             _context = context;
@@ -58,17 +58,16 @@ namespace CornNuggets.WebUI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( [Bind("CustomerId,FirstName,LastName,PreferredStore")] Customers customers, CornNuggetsRepository repository)
+        [ValidateAntiForgeryToken]        
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,PreferredStore")] Customers customer)
         {
             if (ModelState.IsValid)
             {
-                var stores = repository.GetAllPreferredStores();
-                repository.AddCustomer(customers);
+                _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return Redirect("/");
         }
 
         // GET: Customers/Edit/5

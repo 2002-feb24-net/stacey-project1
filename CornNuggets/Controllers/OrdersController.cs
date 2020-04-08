@@ -67,10 +67,11 @@ namespace CornNuggets.WebUI.Controllers
         }
 
         // GET: Orders/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "FirstName", "FirstName");
-            ViewData["StoreId"] = new SelectList(_context.NuggetStores, "StoreName", "StoreName");
+            ViewData["CustomerId"] = new SelectList(_context.Orders, "CustomerId", "Customer ID:");
+            ViewData["StoreId"] = new SelectList(_context.NuggetStores, "StoreId", "StoreId");
             return View();
         }
 
@@ -87,8 +88,8 @@ namespace CornNuggets.WebUI.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "FirstName", orders.CustomerId);
-            ViewData["StoreId"] = new SelectList(_context.NuggetStores, "StoreId", "StoreName", orders.StoreId);
+            ViewData["CustomerId"] = new SelectList(_context.Orders, "CustomerId", "CustomerId", orders.CustomerId);
+            ViewData["StoreId"] = new SelectList(_context.Orders, "StoreId", "StoreId", orders.StoreId);
             return View(orders);
         }
 

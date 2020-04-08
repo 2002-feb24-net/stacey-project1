@@ -12,7 +12,7 @@ namespace CornNuggets.DataAccess.Models
 
         public int OrderId { get; set; }
         public DateTime? DateTimeStamp { get; set; }
-        public int? StoreId { get; set; }
+        public int StoreId { get; set; }//removed question mark 4/8/2020
         public int? CustomerId { get; set; }
         public decimal Total { get; set; }
 

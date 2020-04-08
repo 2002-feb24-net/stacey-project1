@@ -31,7 +31,7 @@ namespace CornNuggets.WebUI.Controllers
         // GET: NuggetStores/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 return NotFound();
             }

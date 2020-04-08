@@ -15,6 +15,7 @@ namespace CornNuggets.WebUI.Controllers
             _context = context;
             repository = new CornNuggetsRepository(_context);
         }
+        
         public  IActionResult Index()
         {
             forms = new FormViewModel();

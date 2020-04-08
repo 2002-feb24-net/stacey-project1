@@ -14,7 +14,7 @@ namespace CornNuggets.WebUI.Controllers
     public class CustomersController : Controller
     {
         private readonly CornNuggetsContext _context;
-        CornNuggetsRepository repository = new CornNuggetsRepository(); 
+        readonly CornNuggetsRepository repository = new CornNuggetsRepository(); 
         public CustomersController(CornNuggetsContext context)
         {
             _context = context;

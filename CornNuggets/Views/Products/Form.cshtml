@@ -8,11 +8,6 @@
 <p>
     <a asp-action="Create">Select Products</a>
 </p>
-<form name="invoice" action="/action_page.php">
-    <label for="fname">First name:</label>
-    <input type="text" id="fname" name="fname" value="FirstName"><output name="FirstName"></output>
-    <label for="lname">Last name:</label>
-    <input type="text" id="lname" name="lname" value="LastName"><output name="LastName"></output><br />
 
 
     <table class="table">
@@ -41,8 +36,7 @@
             {
                 <tr>
                     <td>
-                        <input type="checkbox" />
-
+                        
                     </td>
                     <td>
                         <input type="number" id="b" name="b" min="0" max="50">
@@ -70,8 +64,14 @@
         </tbody>
 
     </table>
-    <button type="button" asp-action="Index" onclick="alert('Order submitted. Thank you!')">Order Now</button>
-</form>
+    <form name="invoice" action="" method="post">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="fname" placeholder="First Name..."/>
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lname" placeholder="Last Name..." />
+
+        <input type="submit" asp-action="Form" onclick="alert('Order submitted. Thank you!')" value="Order Now " />
+    </form>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

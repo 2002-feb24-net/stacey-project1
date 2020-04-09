@@ -71,7 +71,15 @@ namespace CornNuggets.WebUI.Controllers
             ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductId", orderLog.ProductId);
             return View(orderLog);
         }
-
+        [HttpPost]
+        public IActionResult Search(int custId)
+        {
+            var listing = from Orders in _context.Orders
+                          where Orders.CustomerId == custId
+                          select Orders;
+            
+            return View(listing);
+        }
         // GET: OrderLogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

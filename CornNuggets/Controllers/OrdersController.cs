@@ -73,6 +73,18 @@ namespace CornNuggets.WebUI.Controllers
                           select Orders;
             return View(listing);
         }
+
+        public IActionResult Stores(int store)
+        {
+            var listing = from Orders in _context.Orders
+                          where Orders.StoreId == store
+                          select Orders;
+
+            ViewData["orderId"] = new SelectList(_context.Orders, "orderId", "Order ID:");
+            return View(listing);
+        }
+
+
         // GET: Orders/Create
         [HttpGet]
         public IActionResult Create()

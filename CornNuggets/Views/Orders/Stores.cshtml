@@ -1,32 +1,20 @@
 ﻿@model IEnumerable<CornNuggets.DataAccess.Models.Orders>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Stores";
 }
 
-<h1>Orders History</h1>
+<h1>Stores</h1>
 
-
-<a asp-action="Create">Create New</a>
-<form asp-action="Search" method="post">
-    <input type="text" name="custId" placeholder="By Customer Number" />
-    <input type="submit" value="Search" />
-</form>
-<form asp-action="Stores" method="post">
-
-    <input type="text" name="store" placeholder="By Store Number" />
-    <input type="submit" value="Search" />
-</form>
-
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.DateTimeStamp)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderId)
-            </th>   
             <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
@@ -46,16 +34,13 @@
                 @Html.DisplayFor(modelItem => item.DateTimeStamp)
             </td>
             <td>
-                @item.OrderId
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+                @Html.DisplayFor(modelItem => item.CustomerId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Store.StoreName)
+                @Html.DisplayFor(modelItem => item.Store.StoreId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |

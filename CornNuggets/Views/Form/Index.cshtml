@@ -1,74 +1,15 @@
-﻿@model IEnumerable<CornNuggets.DataAccess.Models.ViewModels.FormViewModel>
+﻿
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h1>Form</h1>
+<!DOCTYPE html>
 
-<p>
-    <a asp-action="Create">Select Products</a>
-</p>
-<form name="invoice" action="/action_page.php">
-    <label for="fname">First name:</label> 
-    <input type="text" id="fname" name="fname" value="FirstName"><output name="FirstName"></output> 
-    <label for="lname">Last name:</label> 
-    <input type="text" id="lname" name="lname" value="LastName"><output name="LastName"></output><br />
-
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-
-                </th>
-                <th>
-                    <p>Product Quantity</p>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Products.ProductId)
-                </th>
-                <th>
-
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Products.ProductPrice)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <input type="checkbox" />
-
-                    </td>
-                    <td>
-                        <input type="number" id="b" name="b" min="0" max="50">
-
-                        <output name="qty" for="b"></output>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Products.ProductId)
-                    </td>
-                    <td>
-                        <output name="ProductQty" for="b"></output>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Products.ProductPrice)
-                    </td>
-                    <td>
-
-                        <a asp-action="Details" asp-route-id="@item.Products.ProductId">Details</a>
-
-                    </td>
-                </tr>
-
-            }
-
-        </tbody>
-
-    </table>
-    <button type="button" onclick="alert('Order submitted. Thank you!')">Order Now</button>
-</form>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+</body>
+</html>

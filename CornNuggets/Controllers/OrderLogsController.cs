@@ -42,7 +42,7 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
-
+            //orderLog.SubTotal = orderLog.ProductId *orderLog.ProductQty;
             return View(orderLog);
         }
 
@@ -87,6 +87,7 @@ namespace CornNuggets.WebUI.Controllers
             }
             ViewData["OrderId"] = new SelectList(_context.Orders, "OrderId", "OrderId", orderLog.OrderId);
             ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductId", orderLog.ProductId);
+            
             return View(orderLog);
         }
 

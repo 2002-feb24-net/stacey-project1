@@ -24,14 +24,22 @@ namespace CornNuggets.WebUI.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
+            
             return View(await _context.Customers.ToListAsync());
         }
-
-        // GET: Customers/Details/5
-        
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Search(string fname, string lname)
         {
-            if (id == null)
+            var listing = from Customers in _context.Customers
+                          where Customers.FirstName == fname
+                          where Customers.LastName == lname
+                          select Customers;
+            return View(listing);
+        }
+        // GET: Customers/Details/5
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (id <= 0)
             {
                 return NotFound();
             }
@@ -42,7 +50,7 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
-            var repo = new CornNuggetsRepository();
+            
             return View(customers);
         }
 

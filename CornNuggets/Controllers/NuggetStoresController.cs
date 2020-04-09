@@ -31,7 +31,7 @@ namespace CornNuggets.WebUI.Controllers
         // GET: NuggetStores/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            if (id <= 0)
+            if (id < 0)
             {
                 return NotFound();
             }
@@ -42,9 +42,7 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
-            var repo = new CornNuggetsRepository();
-            var repoList = repo.GetStoreOrders(id);
-            return View(repoList);
+            return View(nuggetStores);
         }
 
         // GET: NuggetStores/Create

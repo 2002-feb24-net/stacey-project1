@@ -6,9 +6,12 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+<a asp-action="Create">Create New</a>
+    <form asp-action="Search" method="post">
+        <input type="text" name="custId" placeholder="Customer ID" />
+        <input type="submit" value="Search" />
+    </form>
 <table class="table">
     <thead>
         <tr>

@@ -65,27 +65,13 @@ namespace CornNuggets.WebUI.Controllers
 
             return View(orders);
         }
-
-        public async Task<IActionResult> StoreOrders(int id, int storeId)
+        [HttpPost]
+        public IActionResult Search(int custId)
         {
-            if (id <= 0)
-            {
-                return NotFound();
-            }
-
-            var orders = await _context.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.Store)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
-            if (orders == null)
-            {
-                return NotFound();
-            }
-            var stores = await _context.NuggetStores
-                .Include(o=> o.Orders)
-                .FirstOrDefaultAsync(o => o.StoreId == storeId);
-
-            return View(orders);
+            var listing = from Orders in _context.Orders
+                          where Orders.CustomerId == custId
+                          select Orders;
+            return View(listing);
         }
         // GET: Orders/Create
         [HttpGet]

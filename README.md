@@ -78,3 +78,4 @@ data access tests (if present) should not impact the app's actual database [new]
 -published to Azure app services; CornNuggetsWeppApp.azurewebsites.net APR/2/2020
 -added repository methods, seed data, controllers (customers, products, orders) APR/3/2020
 -relocated DbInitializer, setup user secrets, incorporated dbContext in startup APR/3/2020
+-milestones reached: search customer, search order, view details of order 9/APR/2020

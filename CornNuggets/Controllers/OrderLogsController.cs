@@ -72,11 +72,11 @@ namespace CornNuggets.WebUI.Controllers
             return View(orderLog);
         }
         [HttpPost]
-        public IActionResult Search(int custId)
+        public IActionResult Search(int orderId)
         {
-            var listing = from Orders in _context.Orders
-                          where Orders.CustomerId == custId
-                          select Orders;
+            var listing = from OrderLog in _context.OrderLog
+                          where OrderLog.OrderId == orderId
+                          select OrderLog;
             
             return View(listing);
         }

@@ -9,13 +9,13 @@
 
 <a asp-action="Create">Create New</a>
 <form asp-action="Search" method="post">
-    <input type="text" name="custId" placeholder="By Customer Number" />
-    <input type="submit" value="Search" />
-</form>
+    <input type="text" name="custId" placeholder="By Customer Number" required/>
+    <input type="submit" value="Filter" required />
+</form><br />
 <form asp-action="Stores" method="post">
 
     <input type="text" name="store" placeholder="By Store Number" />
-    <input type="submit" value="Search" />
+    <input type="submit" value="Filter" />
 </form>
 
 <table class="table">

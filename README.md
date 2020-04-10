@@ -2,15 +2,15 @@
 Web Application for Store Implementation
 
 /*functionality*/
-place orders to store locations for customers
-add a new customer
-search customers by name
-display details of an order
-display all order history of a store location
-display all order history of a customer
-client-side validation [new]
-server-side validation [new]
-exception handling
+place orders to store locations for customers[done]
+add a new customer [done]
+search customers by name[done]
+display details of an order[done]
+display all order history of a store location[done]
+display all order history of a customer[done]
+client-side validation [done]
+server-side validation [done]
+exception handling [done]
 CSRF prevention
 -persistent data; no prices, customers, order history, etc. hardcoded in C#
 logging [new]

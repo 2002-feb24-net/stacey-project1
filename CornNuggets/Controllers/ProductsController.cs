@@ -55,6 +55,7 @@ namespace CornNuggets.WebUI.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewData["ProductName"] = new SelectList(_context.Products, "ProductName", "Product Name");
             return View();
         }
 
@@ -68,6 +69,7 @@ namespace CornNuggets.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(products);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -107,6 +109,7 @@ namespace CornNuggets.WebUI.Controllers
                 try
                 {
                     _context.Update(products);
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

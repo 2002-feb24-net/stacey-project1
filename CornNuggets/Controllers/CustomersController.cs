@@ -92,6 +92,7 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
+            ViewData["StoreName"] = new SelectList(_context.NuggetStores, "PreferredStore", "StoreName", customers.PreferredStore);
             return View(customers);
         }
 
@@ -127,6 +128,7 @@ namespace CornNuggets.WebUI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StoreName"] = new SelectList(_context.NuggetStores, "PreferredStore", "StoreName", customers.PreferredStore);
             return View(customers);
         }
 

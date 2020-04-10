@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Order Log</h1>
+    <h1 class="card-title">Order Log</h1>
 
 
 <a asp-action="Create">Create New</a>
@@ -37,8 +37,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ProductQty)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubTotal)
+            <td>                
+                @Html.DisplayFor(modelItem => item.Product.ProductPrice.Value)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Order.OrderId)

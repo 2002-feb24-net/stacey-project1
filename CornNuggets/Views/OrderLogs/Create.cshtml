@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+    <h1 class="card-title">Create</h1>
 
 <h4>OrderLog</h4>
 <hr />
@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="OrderId" class="control-label"></label>
-                <input asp-for="OrderId" class ="form-control" asp-items="ViewBag.OrderId" min="1000"/>
+                <input asp-for="OrderId" class ="form-control" asp-items="ViewBag.OrderId" min="1000" placeholder="1000"/>
             </div>
             <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
@@ -26,7 +26,8 @@
                 <span asp-validation-for="ProductQty" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add To Order" class="btn btn-primary" asp-area="" asp-controller="OrderLogs" asp-action="Create" />
+                <input type="submit" value="Finish" class="btn btn-primary"  />
             </div>
         </form>
     </div>

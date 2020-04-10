@@ -23,6 +23,7 @@ namespace CornNuggets.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var cornNuggetsContext = _context.OrderLog.Include(o => o.Order).Include(o => o.Product);
+            
             return View(await cornNuggetsContext.ToListAsync());
         }
 
@@ -38,11 +39,12 @@ namespace CornNuggets.WebUI.Controllers
                 .Include(o => o.Order)
                 .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.LogId == id);
+
             if (orderLog == null)
             {
                 return NotFound();
             }
-            //orderLog.SubTotal = orderLog.ProductId *orderLog.ProductQty;
+            orderLog.SubTotal = (int)(orderLog.ProductId *orderLog.ProductQty);
             return View(orderLog);
         }
 
@@ -93,6 +95,7 @@ namespace CornNuggets.WebUI.Controllers
             {
                 return NotFound();
             }
+
             ViewData["OrderId"] = new SelectList(_context.Orders, "OrderId", "OrderId", orderLog.OrderId);
             ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductId", orderLog.ProductId);
             

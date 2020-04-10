@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CornNuggets.DataAccess;
 using CornNuggets.DataAccess.Models;
+using CornNuggets.DataAccess.Repositories;
 
 namespace CornNuggets.WebUI.Controllers
 {
@@ -17,12 +18,14 @@ namespace CornNuggets.WebUI.Controllers
         public OrdersController(CornNuggetsContext context)
         {
             _context = context;
+            var repo = new CornNuggetsRepository();
+
         }
 
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var cornNuggetsContext = _context.Orders.Include(o => o.Customer).Include(o => o.Store);
+            var cornNuggetsContext = _context.Orders.Include(o => o.Customer).Include(o => o.Store).Include(o=> o.OrderLog);
             return View(await cornNuggetsContext.ToListAsync());
         }
 
@@ -104,6 +107,7 @@ namespace CornNuggets.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(orders);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
